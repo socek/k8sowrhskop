@@ -1,0 +1,3 @@
+[run]
+source = faker
+omit = faker/test*

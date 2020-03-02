@@ -1,0 +1,12 @@
+version: '3.6'
+services:
+  faker:
+    build: .
+    image: water-image
+    env_file: .env
+    volumes:
+      - ./src:/src
+    stdin_open: true
+    tty: true
+    ports:
+      - 8000:8000

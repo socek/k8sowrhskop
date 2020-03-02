@@ -1,0 +1,57 @@
+[tool.poetry]
+name = "faker"
+version = "0.1.0"
+description = ""
+authors = ["Socek <dominik.dlugajczyk@netguru.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+django = "^3.0.3"
+pyramid = "^1.10.4"
+cookiecutter = "^1.7.0"
+pyramid_jinja2 = "^2.8"
+pyramid_debugtoolbar = "^4.6.1"
+waitress = "^1.4.3"
+alembic = "^1.4.1"
+pyramid_retry = "^2.1"
+pyramid_tm = "^2.4"
+SQLAlchemy = "^1.3.13"
+transaction = "^3.0.0"
+"zope.sqlalchemy" = "^1.3"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
+[tool.black]
+line-length = 79
+skip-string-normalization = true
+py36 = false
+exclude = '''
+/(
+    \.git
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | \.pytest_cache
+  | dist
+  | build
+  | docs
+)/
+'''
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = false
+combine_as_imports = true
+use_parenthesis = true
+line_length = 79
+force_sort_within_sections = true
+no_lines_before = "THIRDPARTY"
+sections = "FUTURE,THIRDPARTY,FIRSTPARTY,LOCALFOLDER"
+default_section = "THIRDPARTY"
+known_first_party = "pyramid"
