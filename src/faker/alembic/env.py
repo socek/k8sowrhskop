@@ -1,15 +1,20 @@
 """Pyramid bootstrap environment. """
 from alembic import context
-from pyramid.paster import get_appsettings, setup_logging
+from decouple import config as env
+from faker.models.meta import Base
 from sqlalchemy import engine_from_config
 
-from faker.models.meta import Base
+from pyramid.paster import get_appsettings
+from pyramid.paster import setup_logging
 
 config = context.config
 
 setup_logging(config.config_file_name)
 
 settings = get_appsettings(config.config_file_name)
+settings["sqlalchemy.url"] = env(
+    "SQLALCHEMY_URL", settings["sqlalchemy.url"]
+)
 target_metadata = Base.metadata
 
 
@@ -40,10 +45,7 @@ def run_migrations_online():
     engine = engine_from_config(settings, prefix='sqlalchemy.')
 
     connection = engine.connect()
-    context.configure(
-        connection=connection,
-        target_metadata=target_metadata
-    )
+    context.configure(connection=connection, target_metadata=target_metadata)
 
     try:
         with context.begin_transaction():

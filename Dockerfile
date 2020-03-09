@@ -17,10 +17,6 @@ RUN chmod 777 $APP_DIR
 RUN poetry install
 RUN poetry run python setup.py develop
 
-# Install dependencies
-# COPY --chown=user:user src/Pipfile src/Pipfile.lock src/setup.py $APP_DIR/
-# RUN pipenv install --dev --system && python setup.py develop
-
 CMD ./start.sh
 
 EXPOSE 8000
